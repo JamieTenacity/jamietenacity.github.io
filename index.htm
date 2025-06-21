@@ -1,7 +1,459 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Catalogue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9em;
+        }
+
+        select, input[type="text"] {
+            padding: 8px 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .clear-filters {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .clear-filters:hover {
+            background: #c0392b;
+        }
+
+        .results-info {
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .catalogue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .app-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .app-url {
+            font-size: 0.9em;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .app-url:hover {
+            text-decoration: underline;
+        }
+
+        .app-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .app-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .meta-item {
+            background: #ecf0f1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #2c3e50;
+        }
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .tag {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .catalogue-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div class="container">
+        <header>
+            <h1>App Catalogue</h1>
+            <p class="subtitle">Discover and explore applications and websites</p>
+        </header>
+
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="search">Search</label>
+                    <input type="text" id="search" class="search-box" placeholder="Search apps, descriptions, or URLs...">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="type">Type</label>
+                    <select id="type">
+                        <option value="">All Types</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="platform">Platform</label>
+                    <select id="platform">
+                        <option value="">All Platforms</option>
+                    </select>
+                </div>
+                
+                <button class="clear-filters" onclick="clearAllFilters()">Clear Filters</button>
+            </div>
+        </div>
+
+        <div class="results-info" id="results-info"></div>
+
+        <div class="catalogue-grid" id="catalogue-grid">
+            <!-- Apps will be loaded here -->
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <h3>No apps found</h3>
+            <p>Try adjusting your filters or search terms.</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - replace this with your actual JSON file
+        const sampleData = [
+            {
+                "name": "Visual Studio Code",
+                "url": "https://code.visualstudio.com",
+                "description": "A powerful, lightweight code editor with extensive plugin support for web development, debugging, and version control.",
+                "category": "Development",
+                "type": "Application",
+                "platform": "Cross-platform",
+                "tags": ["code-editor", "microsoft", "free", "open-source"]
+            },
+            {
+                "name": "Notion",
+                "url": "https://notion.so",
+                "description": "All-in-one workspace for notes, tasks, wikis, and databases. Perfect for personal productivity and team collaboration.",
+                "category": "Productivity",
+                "type": "Web App",
+                "platform": "Cross-platform",
+                "tags": ["notes", "productivity", "collaboration", "database"]
+            },
+            {
+                "name": "Figma",
+                "url": "https://figma.com",
+                "description": "Collaborative interface design tool with real-time collaboration, prototyping, and design systems.",
+                "category": "Design",
+                "type": "Web App",
+                "platform": "Cross-platform",
+                "tags": ["design", "ui", "collaboration", "prototyping"]
+            },
+            {
+                "name": "PowerShell",
+                "url": "https://github.com/PowerShell/PowerShell",
+                "description": "Cross-platform task automation and scripting language built on .NET, perfect for system administration.",
+                "category": "Development",
+                "type": "Application",
+                "platform": "Cross-platform",
+                "tags": ["scripting", "automation", "microsoft", "open-source"]
+            },
+            {
+                "name": "Slack",
+                "url": "https://slack.com",
+                "description": "Team communication platform with channels, direct messages, file sharing, and extensive integrations.",
+                "category": "Communication",
+                "type": "Web App",
+                "platform": "Cross-platform",
+                "tags": ["communication", "team", "chat", "collaboration"]
+            }
+        ];
+
+        let allApps = [];
+        let filteredApps = [];
+
+        // Initialize the catalogue
+        async function initCatalogue() {
+            try {
+                // In a real implementation, uncomment this to load from JSON:
+                // const response = await fetch('/data/apps.json');
+                // allApps = await response.json();
+                
+                // For demo purposes, using sample data:
+                allApps = sampleData;
+                
+                filteredApps = [...allApps];
+                populateFilters();
+                displayApps();
+                updateResultsInfo();
+            } catch (error) {
+                console.error('Error loading catalogue data:', error);
+                document.getElementById('catalogue-grid').innerHTML = '<p>Error loading catalogue data.</p>';
+            }
+        }
+
+        // Populate filter dropdowns
+        function populateFilters() {
+            const categories = [...new Set(allApps.map(app => app.category))].sort();
+            const types = [...new Set(allApps.map(app => app.type))].sort();
+            const platforms = [...new Set(allApps.map(app => app.platform))].sort();
+
+            populateSelect('category', categories);
+            populateSelect('type', types);
+            populateSelect('platform', platforms);
+        }
+
+        function populateSelect(selectId, options) {
+            const select = document.getElementById(selectId);
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                select.appendChild(optionElement);
+            });
+        }
+
+        // Display apps in the grid
+        function displayApps() {
+            const grid = document.getElementById('catalogue-grid');
+            const noResults = document.getElementById('no-results');
+            
+            if (filteredApps.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            grid.innerHTML = filteredApps.map(app => `
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">${app.name.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <div class="app-title">${app.name}</div>
+                            <a href="${app.url}" class="app-url" target="_blank" rel="noopener">${app.url}</a>
+                        </div>
+                    </div>
+                    <div class="app-description">${app.description}</div>
+                    <div class="app-meta">
+                        <span class="meta-item">📁 ${app.category}</span>
+                        <span class="meta-item">💻 ${app.type}</span>
+                        <span class="meta-item">🌐 ${app.platform}</span>
+                    </div>
+                    <div class="app-tags">
+                        ${app.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter apps based on current filter values
+        function filterApps() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const category = document.getElementById('category').value;
+            const type = document.getElementById('type').value;
+            const platform = document.getElementById('platform').value;
+
+            filteredApps = allApps.filter(app => {
+                const matchesSearch = !searchTerm || 
+                    app.name.toLowerCase().includes(searchTerm) ||
+                    app.description.toLowerCase().includes(searchTerm) ||
+                    app.url.toLowerCase().includes(searchTerm) ||
+                    app.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+
+                const matchesCategory = !category || app.category === category;
+                const matchesType = !type || app.type === type;
+                const matchesPlatform = !platform || app.platform === platform;
+
+                return matchesSearch && matchesCategory && matchesType && matchesPlatform;
+            });
+
+            displayApps();
+            updateResultsInfo();
+        }
+
+        // Update results information
+        function updateResultsInfo() {
+            const info = document.getElementById('results-info');
+            const total = allApps.length;
+            const showing = filteredApps.length;
+            
+            if (showing === total) {
+                info.textContent = `Showing all ${total} apps`;
+            } else {
+                info.textContent = `Showing ${showing} of ${total} apps`;
+            }
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            document.getElementById('search').value = '';
+            document.getElementById('category').value = '';
+            document.getElementById('type').value = '';
+            document.getElementById('platform').value = '';
+            
+            filteredApps = [...allApps];
+            displayApps();
+            updateResultsInfo();
+        }
+
+        // Add event listeners
+        document.getElementById('search').addEventListener('input', filterApps);
+        document.getElementById('category').addEventListener('change', filterApps);
+        document.getElementById('type').addEventListener('change', filterApps);
+        document.getElementById('platform').addEventListener('change', filterApps);
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initCatalogue);
+    </script>
 </body>
 </html>

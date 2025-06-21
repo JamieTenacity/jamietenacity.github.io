@@ -1,0 +1,11 @@
+[
+  {
+    "name": "App Name",
+    "url": "https://example.com",
+    "description": "Brief description of what this app does",
+    "category": "Development",
+    "type": "Web App",
+    "platform": "Cross-platform",
+    "tags": ["tag1", "tag2", "tag3"]
+  }
+]
