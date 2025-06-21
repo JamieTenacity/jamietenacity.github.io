@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Visual Studio Code",
+    "url": "https://code.visualstudio.com",
+    "description": "A powerful, lightweight code editor with extensive plugin support for web development, debugging, and version control.",
+    "category": "Development",
+    "type": "Application",
+    "platform": "Cross-platform",
+    "tags": ["code-editor", "microsoft", "free", "open-source"]
+  },
+  {
+    "name": "Notion",
+    "url": "https://notion.so",
+    "description": "All-in-one workspace for notes, tasks, wikis, and databases. Perfect for personal productivity and team collaboration.",
+    "category": "Productivity",
+    "type": "Web App",
+    "platform": "Cross-platform",
+    "tags": ["notes", "productivity", "collaboration", "database"]
+  },
+  {
+    "name": "Figma",
+    "url": "https://figma.com",
+    "description": "Collaborative interface design tool with real-time collaboration, prototyping, and design systems.",
+    "category": "Design",
+    "type": "Web App",
+    "platform": "Cross-platform",
+    "tags": ["design", "ui", "collaboration", "prototyping"]
+  },
+  {
+    "name": "PowerShell",
+    "url": "https://github.com/PowerShell/PowerShell",
+    "description": "Cross-platform task automation and scripting language built on .NET, perfect for system administration.",
+    "category": "Development",
+    "type": "Application",
+    "platform": "Cross-platform",
+    "tags": ["scripting", "automation", "microsoft", "open-source"]
+  },
+  {
+    "name": "Slack",
+    "url": "https://slack.com",
+    "description": "Team communication platform with channels, direct messages, file sharing, and extensive integrations.",
+    "category": "Communication",
+    "type": "Web App",
+    "platform": "Cross-platform",
+    "tags": ["communication", "team", "chat", "collaboration"]
+  },
+  {
+    "name": "GitHub Desktop",
+    "url": "https://desktop.github.com",
+    "description": "Simple GUI for Git version control with GitHub integration, making it easy to manage repositories visually.",
+    "category": "Development",
+    "type": "Application",
+    "platform": "Windows",
+    "tags": ["git", "github", "version-control", "gui"]
+  },
+  {
+    "name": "Canva",
+    "url": "https://canva.com",
+    "description": "User-friendly graphic design platform with templates for presentations, social media, posters, and more.",
+    "category": "Design",
+    "type": "Web App",
+    "platform": "Cross-platform",
+    "tags": ["design", "templates", "graphics", "presentations"]
+  },
+  {
+    "name": "Zoom",
+    "url": "https://zoom.us",
+    "description": "Video conferencing platform for meetings, webinars, and online collaboration with screen sharing and recording.",
+    "category": "Communication",
+    "type": "Application",
+    "platform": "Cross-platform",
+    "tags": ["video-calls", "meetings", "webinars", "remote-work"]
+  },
+  {
+    "name": "Trello",
+    "url": "https://trello.com",
+    "description": "Kanban-style project management tool with boards, lists, and cards for organizing tasks and workflows.",
+    "category": "Productivity",
+    "type": "Web App",
+    "platform": "Cross-platform",
+    "tags": ["project-management", "kanban", "collaboration", "organization"]
+  },
+  {
+    "name": "Adobe Photoshop",
+    "url": "https://www.adobe.com/products/photoshop.html",
+    "description": "Professional image editing and graphic design software with advanced photo manipulation capabilities.",
+    "category": "Design",
+    "type": "Application",
+    "platform": "Windows",
+    "tags": ["photo-editing", "graphics", "professional", "adobe"]
+  }
+]

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Catalogue</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>App Catalogue</h1>
+            <p class="subtitle">Discover and explore applications and websites</p>
+        </header>
+
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="search">Search</label>
+                    <input type="text" id="search" class="search-box" placeholder="Search apps, descriptions, or URLs...">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="type">Type</label>
+                    <select id="type">
+                        <option value="">All Types</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="platform">Platform</label>
+                    <select id="platform">
+                        <option value="">All Platforms</option>
+                    </select>
+                </div>
+                
+                <button class="clear-filters" onclick="clearAllFilters()">Clear Filters</button>
+            </div>
+        </div>
+
+        <div class="results-info" id="results-info"></div>
+
+        <div class="catalogue-grid" id="catalogue-grid">
+            <!-- Apps will be loaded here -->
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <h3>No apps found</h3>
+            <p>Try adjusting your filters or search terms.</p>
+        </div>
+    </div>
+
+    <script src="js/catalogue.js"></script>
+</body>
+</html>
