@@ -146,7 +146,7 @@ function createAppCard(app) {
         <div class="app-card">
             <div class="app-header">
                 <div class="app-icon">${iconLetter}</div>
-                <div>
+                <div class="app-info">
                     <div class="app-title">${escapeHtml(name)}</div>
                     <a href="${escapeHtml(url)}" class="app-url" target="_blank" rel="noopener">${escapeHtml(url)}</a>
                 </div>
