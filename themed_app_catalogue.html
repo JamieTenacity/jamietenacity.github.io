@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Catalogue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        :root {
+            /* Light theme colors */
+            --primary-blue: #002699;
+            --accent-orange: #e36d00;
+            --bg-primary: #fdfcfa;
+            --bg-secondary: #f5f4f2;
+            --bg-tertiary: #ffffff;
+            --text-primary: #0a1020;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --shadow-light: rgba(10, 16, 32, 0.05);
+            --shadow-medium: rgba(10, 16, 32, 0.1);
+            --shadow-heavy: rgba(10, 16, 32, 0.15);
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme colors */
+            --primary-blue: #4d9fff;
+            --bg-primary: #0a1020;
+            --bg-secondary: #1a202c;
+            --bg-tertiary: #2a3441;
+            --text-primary: #fdfcfa;
+            --text-secondary: #cbd5e0;
+            --text-muted: #a0aec0;
+            --border-color: #4a5568;
+            --shadow-light: rgba(0, 0, 0, 0.2);
+            --shadow-medium: rgba(0, 0, 0, 0.3);
+            --shadow-heavy: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            width: 60px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 2px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary-blue);
+        }
+
+        .theme-toggle-slider {
+            width: 26px;
+            height: 26px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+        }
+
+        [data-theme="dark"] .theme-toggle-slider {
+            transform: translateX(28px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 60px;
+        }
+
+        h1 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .filters {
+            background: var(--bg-tertiary);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow-light);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9em;
+        }
+
+        select, input[type="text"] {
+            padding: 10px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 38, 153, 0.1);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .clear-filters {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .clear-filters:hover {
+            background: #cc5e00;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(227, 109, 0, 0.3);
+        }
+
+        .results-info {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .catalogue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .app-card {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px var(--shadow-light);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px var(--shadow-medium);
+            border-color: var(--primary-blue);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-blue), #0033cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 16px;
+            font-size: 1.25em;
+            box-shadow: 0 2px 8px rgba(0, 38, 153, 0.3);
+        }
+
+        .app-title {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .app-url {
+            font-size: 0.9em;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .app-url:hover {
+            color: var(--accent-orange);
+            text-decoration: underline;
+        }
+
+        .app-description {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .app-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            background: var(--bg-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--accent-orange), #ff7a00);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.8em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(227, 109, 0, 0.2);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            border: 2px dashed var(--border-color);
+        }
+
+        .no-results h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            header {
+                margin-top: 70px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .catalogue-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-card {
+                padding: 20px;
+            }
+        }
+
+        /* Forced Colors Mode support for better accessibility */
+        @media (forced-colors: active) {
+            .app-card {
+                border: 1px solid;
+            }
+            
+            .app-icon {
+                background: ButtonFace;
+                color: ButtonText;
+                border: 1px solid ButtonText;
+            }
+            
+            .tag {
+                background: Highlight;
+                color: HighlightText;
+                border: 1px solid;
+            }
+            
+            .clear-filters {
+                background: ButtonFace;
+                color: ButtonText;
+                border: 1px solid ButtonText;
+            }
+            
+            .meta-item {
+                background: Canvas;
+                color: CanvasText;
+                border: 1px solid;
+            }
+            
+            select, input[type="text"] {
+                background: Field;
+                color: FieldText;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <div class="theme-toggle-slider">☀️</div>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>App Catalogue</h1>
+            <p class="subtitle">Discover and explore applications and websites</p>
+        </header>
+
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="search">Search</label>
+                    <input type="text" id="search" class="search-box" placeholder="Search apps, descriptions, or URLs...">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="type">Type</label>
+                    <select id="type">
+                        <option value="">All Types</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="platform">Platform</label>
+                    <select id="platform">
+                        <option value="">All Platforms</option>
+                    </select>
+                </div>
+                
+                <button class="clear-filters" onclick="clearAllFilters()">Clear Filters</button>
+            </div>
+        </div>
+
+        <div class="results-info" id="results-info"></div>
+
+        <div class="catalogue-grid" id="catalogue-grid">
+            <!-- Apps will be loaded here -->
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <h3>No apps found</h3>
+            <p>Try adjusting your filters or search terms.</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - replace with your actual data loading
+        const allApps = [
+            {
+                "name": "Visual Studio Code",
+                "url": "https://code.visualstudio.com",
+                "description": "A powerful, lightweight code editor with extensive plugin support for web development, debugging, and version control.",
+                "category": "Development",
+                "type": "Application",
+                "platform": "Cross-platform",
+                "tags": ["code-editor", "microsoft", "free", "open-source"]
+            },
+            {
+                "name": "Notion",
+                "url": "https://notion.so",
+                "description": "All-in-one workspace for notes, tasks, wikis, and databases. Perfect for personal productivity and team collaboration.",
+                "category": "Productivity",
+                "type": "Web App",
+                "platform": "Cross-platform",
+                "tags": ["notes", "productivity", "collaboration", "database"]
+            },
+            {
+                "name": "Figma",
+                "url": "https://figma.com",
+                "description": "Collaborative interface design tool with real-time collaboration, prototyping, and design systems.",
+                "category": "Design",
+                "type": "Web App",
+                "platform": "Cross-platform",
+                "tags": ["design", "ui", "collaboration", "prototyping"]
+            },
+            {
+                "name": "PowerShell",
+                "url": "https://github.com/PowerShell/PowerShell",
+                "description": "Cross-platform task automation and scripting language built on .NET, perfect for system administration.",
+                "category": "Development",
+                "type": "Application",
+                "platform": "Cross-platform",
+                "tags": ["scripting", "automation", "microsoft", "open-source"]
+            },
+            {
+                "name": "Slack",
+                "url": "https://slack.com",
+                "description": "Team communication platform with channels, direct messages, file sharing, and extensive integrations.",
+                "category": "Communication",
+                "type": "Web App",
+                "platform": "Cross-platform",
+                "tags": ["communication", "team", "chat", "collaboration"]
+            },
+            {
+                "name": "GitHub Desktop",
+                "url": "https://desktop.github.com",
+                "description": "Simple GUI for Git version control with GitHub integration, making it easy to manage repositories visually.",
+                "category": "Development",
+                "type": "Application",
+                "platform": "Windows",
+                "tags": ["git", "github", "version-control", "gui"]
+            }
+        ];
+
+        let filteredApps = [];
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const slider = document.querySelector('.theme-toggle-slider');
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            slider.textContent = newTheme === 'light' ? '☀️' : '🌙';
+            
+            // Save theme preference
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const body = document.body;
+            const slider = document.querySelector('.theme-toggle-slider');
+            
+            body.setAttribute('data-theme', savedTheme);
+            slider.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+        }
+
+        // Initialize the catalogue
+        function initCatalogue() {
+            filteredApps = [...allApps];
+            populateFilters();
+            displayApps();
+            updateResultsInfo();
+            setupEventListeners();
+            loadTheme();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('search').addEventListener('input', filterApps);
+            document.getElementById('category').addEventListener('change', filterApps);
+            document.getElementById('type').addEventListener('change', filterApps);
+            document.getElementById('platform').addEventListener('change', filterApps);
+        }
+
+        // Populate filter dropdowns
+        function populateFilters() {
+            const categories = [...new Set(allApps.map(app => app.category))].sort();
+            const types = [...new Set(allApps.map(app => app.type))].sort();
+            const platforms = [...new Set(allApps.map(app => app.platform))].sort();
+
+            populateSelect('category', categories);
+            populateSelect('type', types);
+            populateSelect('platform', platforms);
+        }
+
+        function populateSelect(selectId, options) {
+            const select = document.getElementById(selectId);
+            
+            while (select.children.length > 1) {
+                select.removeChild(select.lastChild);
+            }
+            
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                select.appendChild(optionElement);
+            });
+        }
+
+        // Display apps
+        function displayApps() {
+            const grid = document.getElementById('catalogue-grid');
+            const noResults = document.getElementById('no-results');
+            
+            if (filteredApps.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            grid.innerHTML = filteredApps.map(app => createAppCard(app)).join('');
+        }
+
+        function createAppCard(app) {
+            const name = app.name || 'Unknown App';
+            const url = app.url || '#';
+            const description = app.description || 'No description available';
+            const category = app.category || 'Uncategorized';
+            const type = app.type || 'Unknown';
+            const platform = app.platform || 'Unknown';
+            const tags = app.tags || [];
+            
+            const iconLetter = name.charAt(0).toUpperCase();
+            const tagsHtml = tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
+            
+            return `
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">${iconLetter}</div>
+                        <div>
+                            <div class="app-title">${escapeHtml(name)}</div>
+                            <a href="${escapeHtml(url)}" class="app-url" target="_blank" rel="noopener">${escapeHtml(url)}</a>
+                        </div>
+                    </div>
+                    <div class="app-description">${escapeHtml(description)}</div>
+                    <div class="app-meta">
+                        <span class="meta-item">📁 ${escapeHtml(category)}</span>
+                        <span class="meta-item">💻 ${escapeHtml(type)}</span>
+                        <span class="meta-item">🌐 ${escapeHtml(platform)}</span>
+                    </div>
+                    <div class="app-tags">
+                        ${tagsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter apps
+        function filterApps() {
+            const searchTerm = document.getElementById('search').value.toLowerCase().trim();
+            const category = document.getElementById('category').value;
+            const type = document.getElementById('type').value;
+            const platform = document.getElementById('platform').value;
+
+            filteredApps = allApps.filter(app => {
+                const matchesSearch = !searchTerm || 
+                    (app.name && app.name.toLowerCase().includes(searchTerm)) ||
+                    (app.description && app.description.toLowerCase().includes(searchTerm)) ||
+                    (app.url && app.url.toLowerCase().includes(searchTerm)) ||
+                    (app.tags && app.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+
+                const matchesCategory = !category || app.category === category;
+                const matchesType = !type || app.type === type;
+                const matchesPlatform = !platform || app.platform === platform;
+
+                return matchesSearch && matchesCategory && matchesType && matchesPlatform;
+            });
+
+            displayApps();
+            updateResultsInfo();
+        }
+
+        function updateResultsInfo() {
+            const info = document.getElementById('results-info');
+            const total = allApps.length;
+            const showing = filteredApps.length;
+            
+            if (showing === total) {
+                info.textContent = `Showing all ${total} apps`;
+            } else {
+                info.textContent = `Showing ${showing} of ${total} apps`;
+            }
+        }
+
+        function clearAllFilters() {
+            document.getElementById('search').value = '';
+            document.getElementById('category').value = '';
+            document.getElementById('type').value = '';
+            document.getElementById('platform').value = '';
+            
+            filteredApps = [...allApps];
+            displayApps();
+            updateResultsInfo();
+        }
+
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') return '';
+            
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initCatalogue);
+    </script>
+</body>
+</html>

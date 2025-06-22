@@ -3,6 +3,34 @@ let allApps = [];
 let filteredApps = [];
 
 /**
+ * Theme toggle functionality
+ */
+function toggleTheme() {
+    const body = document.body;
+    const slider = document.querySelector('.theme-toggle-slider');
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    body.setAttribute('data-theme', newTheme);
+    slider.textContent = newTheme === 'light' ? '☀️' : '🌙';
+    
+    // Save theme preference
+    localStorage.setItem('theme', newTheme);
+}
+
+/**
+ * Load saved theme preference
+ */
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    const body = document.body;
+    const slider = document.querySelector('.theme-toggle-slider');
+    
+    body.setAttribute('data-theme', savedTheme);
+    slider.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+}
+
+/**
  * Initialize the catalogue when the page loads
  */
 async function initCatalogue() {
@@ -19,6 +47,9 @@ async function initCatalogue() {
         
         // Add event listeners
         setupEventListeners();
+        
+        // Load saved theme
+        loadTheme();
         
     } catch (error) {
         console.error('Error loading catalogue data:', error);
