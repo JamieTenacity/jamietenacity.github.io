@@ -206,3 +206,39 @@ select:focus, input[type="text"]:focus {
         grid-template-columns: 1fr;
     }
 }
+
+/* Forced Colors Mode support for better accessibility */
+@media (forced-colors: active) {
+    .app-card {
+        border: 1px solid;
+    }
+    
+    .app-icon {
+        background: ButtonFace;
+        color: ButtonText;
+        border: 1px solid ButtonText;
+    }
+    
+    .tag {
+        background: Highlight;
+        color: HighlightText;
+        border: 1px solid;
+    }
+    
+    .clear-filters {
+        background: ButtonFace;
+        color: ButtonText;
+        border: 1px solid ButtonText;
+    }
+    
+    .meta-item {
+        background: Canvas;
+        color: CanvasText;
+        border: 1px solid;
+    }
+    
+    select, input[type="text"] {
+        background: Field;
+        color: FieldText;
+    }
+}
