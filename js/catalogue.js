@@ -134,13 +134,9 @@ function createAppCard(app) {
     const category = app.category || 'Uncategorized';
     const type = app.type || 'Unknown';
     const platform = app.platform || 'Unknown';
-    const tags = app.tags || [];
     
     // Create app icon (first letter of name)
     const iconLetter = name.charAt(0).toUpperCase();
-    
-    // Create tags HTML
-    const tagsHtml = tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
     
     return `
         <div class="app-card">
@@ -156,9 +152,6 @@ function createAppCard(app) {
                 <span class="meta-item">📁 ${escapeHtml(category)}</span>
                 <span class="meta-item">💻 ${escapeHtml(type)}</span>
                 <span class="meta-item">🌐 ${escapeHtml(platform)}</span>
-            </div>
-            <div class="app-tags">
-                ${tagsHtml}
             </div>
         </div>
     `;
@@ -178,8 +171,7 @@ function filterApps() {
         const matchesSearch = !searchTerm || 
             (app.name && app.name.toLowerCase().includes(searchTerm)) ||
             (app.description && app.description.toLowerCase().includes(searchTerm)) ||
-            (app.url && app.url.toLowerCase().includes(searchTerm)) ||
-            (app.tags && app.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+            (app.url && app.url.toLowerCase().includes(searchTerm));
 
         // Category filter
         const matchesCategory = !category || app.category === category;
