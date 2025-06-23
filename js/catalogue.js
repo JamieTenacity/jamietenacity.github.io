@@ -157,9 +157,9 @@ function createAppCard(app) {
             <div class="app-description">${escapeHtml(description)}</div>
             ${extraUrl ? `<div class='extra-url-row'><span class='url-prefix'>${escapeHtml(extraUrlPrefix)}</span><a href='${escapeHtml(extraUrl)}' class='app-url' target='_blank' rel='noopener'>${escapeHtml(extraUrlText)}</a></div>` : ''}
             <div class="app-meta">
-                <span class="meta-item">📁 ${escapeHtml(category)}</span>
-                <span class="meta-item">💻 ${escapeHtml(type)}</span>
-                <span class="meta-item">🌐 ${escapeHtml(platform)}</span>
+                <span class="meta-item"><strong>C:</strong> ${escapeHtml(category)}</span>
+                <span class="meta-item"><strong>T:</strong> ${escapeHtml(type)}</span>
+                <span class="meta-item"><strong>P:</strong> ${escapeHtml(platform)}</span>
             </div>
         </div>
     `;
