@@ -54,6 +54,29 @@
                 
                 <button class="clear-filters" onclick="clearAllFilters()">Clear Filters</button>
             </div>
+            
+            <div class="filter-row">
+                <div class="interface-filters">
+                    <label>Interfaces:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label" title="For clicking">
+                            <input type="checkbox" id="gui-filter">
+                            <span class="checkmark"></span>
+                            GUI
+                        </label>
+                        <label class="checkbox-label" title="GUI with command line switches">
+                            <input type="checkbox" id="cliOptions-filter">
+                            <span class="checkmark"></span>
+                            CLI Options
+                        </label>
+                        <label class="checkbox-label" title="Full command line interface">
+                            <input type="checkbox" id="cli-filter">
+                            <span class="checkmark"></span>
+                            CLI
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="results-info" id="results-info"></div>

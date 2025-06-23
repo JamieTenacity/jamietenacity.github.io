@@ -1,6 +1,9 @@
 [
   {
     "name": "BlueScreenView",
+	"gui": true,
+    "cliOptions": true,
+    "cli": false,
     "urlPrefix": "x64 Zip: ",
     "url": "https://www.nirsoft.net/utils/bluescreenview-x64.zip",
     "urlText": "nirsoft.net/utils/bluescreenview-x64.zip",
@@ -14,6 +17,9 @@
   },
   {
     "name": "LastActivityView",
+	"gui": true,
+    "cliOptions": true,
+    "cli": false,
     "urlPrefix": "Zip: ",
     "url": "https://www.nirsoft.net/utils/lastactivityview.zip",
     "urlText": "nirsoft.net/utils/lastactivityview.zip",
@@ -24,5 +30,21 @@
     "category": "System",
     "type": "Native App",
     "platform": "Windows"
+  },
+  {
+    "name": "ImportExcel",
+	"gui": false,
+    "cliOptions": false,
+    "cli": true,
+    "urlPrefix": "PS Gallery: ",
+    "url": "https://www.powershellgallery.com/packages/ImportExcel/",
+    "urlText": "powershellgallery.com/packages/ImportExcel/",
+	"extraUrlPrefix": "Site: ",
+    "extraUrl": "https://github.com/dfinke/ImportExcel",
+	"extraUrlText": "github.com/dfinke/ImportExcel",
+    "description": "Legendary PowerShell module that I use weekly to import Excel files into my scripts, and create them. It even supports formatting, multiple sheets, charts and pivot tables and doesn't need Excel to be installed. Lots of docs and examples on GitHub.",
+    "category": "Scripting",
+    "type": "PowerShell",
+    "platform": "Cross-platform"
   }
 ]

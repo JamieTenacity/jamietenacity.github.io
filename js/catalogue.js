@@ -65,6 +65,11 @@ function setupEventListeners() {
     document.getElementById('category').addEventListener('change', filterApps);
     document.getElementById('type').addEventListener('change', filterApps);
     document.getElementById('platform').addEventListener('change', filterApps);
+    
+    // Add event listeners for interface filters
+    document.getElementById('gui-filter').addEventListener('change', filterApps);
+    document.getElementById('cliOptions-filter').addEventListener('change', filterApps);
+    document.getElementById('cli-filter').addEventListener('change', filterApps);
 }
 
 /**
@@ -173,6 +178,11 @@ function filterApps() {
     const category = document.getElementById('category').value;
     const type = document.getElementById('type').value;
     const platform = document.getElementById('platform').value;
+    
+    // Get interface filter values
+    const guiFilter = document.getElementById('gui-filter').checked;
+    const cliOptionsFilter = document.getElementById('cliOptions-filter').checked;
+    const cliFilter = document.getElementById('cli-filter').checked;
 
     filteredApps = allApps.filter(app => {
         // Search filter - check multiple fields
@@ -189,8 +199,14 @@ function filterApps() {
         
         // Platform filter
         const matchesPlatform = !platform || app.platform === platform;
+        
+        // Interface filters
+        const matchesGui = !guiFilter || app.gui === true;
+        const matchesCliOptions = !cliOptionsFilter || app.cliOptions === true;
+        const matchesCli = !cliFilter || app.cli === true;
 
-        return matchesSearch && matchesCategory && matchesType && matchesPlatform;
+        return matchesSearch && matchesCategory && matchesType && matchesPlatform && 
+               matchesGui && matchesCliOptions && matchesCli;
     });
 
     displayApps();
@@ -221,6 +237,11 @@ function clearAllFilters() {
     document.getElementById('category').value = '';
     document.getElementById('type').value = '';
     document.getElementById('platform').value = '';
+    
+    // Reset interface filters
+    document.getElementById('gui-filter').checked = false;
+    document.getElementById('cliOptions-filter').checked = false;
+    document.getElementById('cli-filter').checked = false;
     
     // Reset filtered apps to show all
     filteredApps = [...allApps];
