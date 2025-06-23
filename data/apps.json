@@ -1,11 +1,11 @@
 [
   {
-    "name": "Visual Studio Code",
-    "url": "https://code.visualstudio.com",
-    "description": "A powerful, lightweight code editor with extensive plugin support for web development, debugging, and version control.",
-    "category": "Development",
-    "type": "Application",
-    "platform": "Cross-platform"
+    "name": "BlueScreenView",
+    "url": "https://www.nirsoft.net/utils/bluescreenview-x64.zip",
+    "description": "A small utility to display details of BSOD errors (blue screen of death, or stop errors), for easy troubleshooting. BlueScreenView can read Windows minidump logs of other machines on your network. The link above downloads the x64 zip, but other versions and docs are at https://www.nirsoft.net/utils/blue_screen_view.html",
+    "category": "System",
+    "type": "Native App",
+    "platform": "Windows"
   },
   {
     "name": "Notion",
