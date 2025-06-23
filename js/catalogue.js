@@ -131,8 +131,10 @@ function createAppCard(app) {
     const name = app.name || 'Unknown App';
     const urlPrefix = app.urlPrefix || '';
     const url = app.url || '#';
+    const urlText = app.urlText || url; // Use custom text or fall back to URL
     const extraUrlPrefix = app.extraUrlPrefix || '';
     const extraUrl = app.extraUrl || '';
+    const extraUrlText = app.extraUrlText || extraUrl; // Use custom text or fall back to URL
     const description = app.description || 'No description available';
     const category = app.category || 'Uncategorized';
     const type = app.type || 'Unknown';
@@ -148,12 +150,12 @@ function createAppCard(app) {
                 <div class="app-info">
                     <div class="app-title">${escapeHtml(name)}</div>
                     <div class="url-container">
-                        <span class="url-prefix">${escapeHtml(urlPrefix)}</span><a href="${escapeHtml(url)}" class="app-url" target="_blank" rel="noopener">${escapeHtml(url)}</a>
+                        <span class="url-prefix">${escapeHtml(urlPrefix)}</span><a href="${escapeHtml(url)}" class="app-url" target="_blank" rel="noopener">${escapeHtml(urlText)}</a>
                     </div>
                 </div>
             </div>
             <div class="app-description">${escapeHtml(description)}</div>
-            ${extraUrl ? `<div class='extra-url-row'><span class='url-prefix'>${escapeHtml(extraUrlPrefix)}</span><a href='${escapeHtml(extraUrl)}' class='app-url' target='_blank' rel='noopener'>${escapeHtml(extraUrl)}</a></div>` : ''}
+            ${extraUrl ? `<div class='extra-url-row'><span class='url-prefix'>${escapeHtml(extraUrlPrefix)}</span><a href='${escapeHtml(extraUrl)}' class='app-url' target='_blank' rel='noopener'>${escapeHtml(extraUrlText)}</a></div>` : ''}
             <div class="app-meta">
                 <span class="meta-item">📁 ${escapeHtml(category)}</span>
                 <span class="meta-item">💻 ${escapeHtml(type)}</span>
