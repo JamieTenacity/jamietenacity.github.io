@@ -243,6 +243,25 @@
             margin-bottom: 4px;
         }
 
+        .url-prefix {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-right: 2px;
+        }
+
+        .extra-url-row {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .extra-url-row .app-url {
+            flex: 1;
+            min-width: 0;
+        }
+
         .app-url {
             font-size: 0.9em;
             color: var(--primary-blue);

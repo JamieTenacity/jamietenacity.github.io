@@ -1,8 +1,11 @@
 [
   {
     "name": "BlueScreenView",
+    "urlPrefix": "x64 Zip: ",
     "url": "https://www.nirsoft.net/utils/bluescreenview-x64.zip",
-    "description": "A small utility to display details of BSOD errors (blue screen of death, or stop errors), for easy troubleshooting. BlueScreenView can read Windows minidump logs of other machines on your network. The link above downloads the x64 zip, but other versions and docs are at https://www.nirsoft.net/utils/blue_screen_view.html",
+    "extraUrlPrefix": "Site: ",
+    "extraUrl": "https://www.nirsoft.net/utils/blue_screen_view.html",
+    "description": "A small utility that displays details of BSOD errors (blue screen of death, or stop errors). BlueScreenView can read Windows minidump logs of other machines on your network. See the 'Site' link for other versions and documentation.",
     "category": "System",
     "type": "Native App",
     "platform": "Windows"
