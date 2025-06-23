@@ -243,10 +243,31 @@
             margin-bottom: 4px;
         }
 
+        .url-container {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+            overflow: hidden;
+        }
+
         .url-prefix {
             color: var(--text-primary);
             font-weight: 700;
             margin-right: 2px;
+            flex-shrink: 0;
+        }
+
+        .app-url {
+            font-size: 0.9em;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+            flex: 1;
         }
 
         .extra-url-row {
@@ -260,20 +281,6 @@
         .extra-url-row .app-url {
             flex: 1;
             min-width: 0;
-        }
-
-        .app-url {
-            font-size: 0.9em;
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            min-width: 0;
-            flex: 1;
         }
 
         .app-url:hover {
