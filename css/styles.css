@@ -416,33 +416,79 @@
             .catalogue-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
+                width: 100%;
+                max-width: 100vw;
             }
             
             .app-card {
                 padding: 16px;
                 margin: 0;
                 width: 100%;
+                max-width: 100%;
                 box-sizing: border-box;
+                overflow: hidden;
             }
             
             .container {
                 padding: 16px;
                 max-width: 100%;
+                width: 100%;
                 overflow-x: hidden;
+                box-sizing: border-box;
             }
             
             .filters {
                 padding: 16px;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .interface-filters {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
+                width: 100%;
             }
             
             .checkbox-group {
                 gap: 16px;
+                width: 100%;
+            }
+            
+            /* Safari-specific fixes */
+            .app-info {
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
+            .url-container {
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
+            .app-url {
+                max-width: 100%;
+                overflow: hidden;
+            }
+        }
+        
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .container {
+                width: 100vw;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            
+            .app-card {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
+            .catalogue-grid {
+                width: 100%;
+                max-width: 100%;
             }
         }
 
