@@ -415,10 +415,34 @@
             
             .catalogue-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
             
             .app-card {
-                padding: 20px;
+                padding: 16px;
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .container {
+                padding: 16px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .filters {
+                padding: 16px;
+            }
+            
+            .interface-filters {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .checkbox-group {
+                gap: 16px;
             }
         }
 
