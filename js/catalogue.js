@@ -31,6 +31,19 @@ function loadTheme() {
 }
 
 /**
+ * Copy text to clipboard
+ * @param {string} text - Text to copy to clipboard
+ */
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Show feedback (optional)
+        console.log('Command copied to clipboard');
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+/**
  * Initialize the catalogue when the page loads
  */
 async function initCatalogue() {
@@ -137,6 +150,8 @@ function createAppCard(app) {
     const urlPrefix = app.urlPrefix || '';
     const url = app.url || '#';
     const urlText = app.urlText || url; // Use custom text or fall back to URL
+    const command = app.command || '';
+    const commandPrefix = app.commandPrefix || '';
     const extraUrlPrefix = app.extraUrlPrefix || '';
     const extraUrl = app.extraUrl || '';
     const extraUrlText = app.extraUrlText || extraUrl; // Use custom text or fall back to URL
@@ -148,17 +163,46 @@ function createAppCard(app) {
     // Create app icon (first letter of name)
     const iconLetter = name.charAt(0).toUpperCase();
     
+    // Determine what to show in the main URL area
+    let mainUrlContent = '';
+    if (command) {
+        // Show just the prefix for commands
+        mainUrlContent = `
+            <div class="url-container">
+                <span class="url-prefix">${escapeHtml(commandPrefix)}</span>
+            </div>
+        `;
+    } else {
+        // Show regular URL link
+        mainUrlContent = `
+            <div class="url-container">
+                <span class="url-prefix">${escapeHtml(urlPrefix)}</span><a href="${escapeHtml(url)}" class="app-url" target="_blank" rel="noopener">${escapeHtml(urlText)}</a>
+            </div>
+        `;
+    }
+    
+    // Create command section if command exists
+    const commandSection = command ? `
+        <div class="command-section">
+            <div class="command-display">
+                <code class="command-text">${escapeHtml(command)}</code>
+                <button class="copy-button" onclick="copyToClipboard('${escapeHtml(command)}')" title="Copy command">
+                    📋
+                </button>
+            </div>
+        </div>
+    ` : '';
+    
     return `
         <div class="app-card">
             <div class="app-header">
                 <div class="app-icon">${iconLetter}</div>
                 <div class="app-info">
                     <div class="app-title">${escapeHtml(name)}</div>
-                    <div class="url-container">
-                        <span class="url-prefix">${escapeHtml(urlPrefix)}</span><a href="${escapeHtml(url)}" class="app-url" target="_blank" rel="noopener">${escapeHtml(urlText)}</a>
-                    </div>
+                    ${mainUrlContent}
                 </div>
             </div>
+            ${commandSection}
             <div class="app-description">${escapeHtml(description)}</div>
             ${extraUrl ? `<div class='extra-url-row'><span class='url-prefix'>${escapeHtml(extraUrlPrefix)}</span><a href='${escapeHtml(extraUrl)}' class='app-url' target='_blank' rel='noopener'>${escapeHtml(extraUrlText)}</a></div>` : ''}
             <div class="app-meta">
