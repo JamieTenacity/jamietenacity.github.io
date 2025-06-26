@@ -380,6 +380,7 @@
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             font-size: 0.9em;
             color: var(--text-primary);
+            -webkit-user-select: all;
             user-select: all;
             white-space: pre-wrap;
             word-wrap: break-word;
