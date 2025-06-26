@@ -45,7 +45,7 @@
     "description": "Legendary PowerShell module that I use weekly to import Excel files into my scripts, and create them. It even supports formatting, multiple sheets, charts and pivot tables and doesn't need Excel to be installed. Lots of docs and examples on GitHub.",
     "category": "Scripting",
     "type": "PowerShell",
-    "platform": "Cross-platform"
+    "platform": "Win|Mac|Linux"
   },
   {
     "name": "Chris Titus' Windows Utility",
@@ -57,7 +57,7 @@
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://christitus.com/windows-tool/",
     "extraUrlText": "christitus.com/windows-tool/",
-    "description": "A mature utility from Chris Titus that includes a WinGet batch installer/upgrader with more choices than Ninite, debloating, tweaks, and much more.  ",
+    "description": "A mature utility from Chris Titus that includes a WinGet batch installer/upgrader (with more choices than Ninite), debloating, tweaks, and much more.  ",
     "category": "System",
     "type": "PowerShell",
     "platform": "Windows"

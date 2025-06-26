@@ -430,9 +430,9 @@
 
         .meta-item {
             background: var(--bg-secondary);
-            padding: 6px 12px;
+            padding: 6px 6px;
             border-radius: 6px;
-            font-size: 0.85em;
+            font-size: 0.8em;
             color: var(--text-secondary);
             font-weight: 500;
             border: 1px solid var(--border-color);
