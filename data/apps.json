@@ -48,7 +48,7 @@
     "platform": "Win|Mac|Linux"
   },
   {
-    "name": "Chris Titus' Windows Utility",
+    "name": "Chris Titus' WinUtil",
     "gui": false,
     "cliOptions": false,
     "cli": true,
@@ -57,7 +57,7 @@
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://christitus.com/windows-tool/",
     "extraUrlText": "christitus.com/windows-tool/",
-    "description": "A mature utility from Chris Titus that includes a WinGet batch installer/upgrader (with more choices than Ninite), debloating, tweaks, and much more.  ",
+    "description": "A mature utility from Chris Titus that includes a WinGet batch installer/upgrader (with more choices than Ninite), debloating, tweaks, and much more.",
     "category": "System",
     "type": "PowerShell",
     "platform": "Windows"
