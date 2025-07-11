@@ -72,7 +72,7 @@
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands#command-line-reference-a-z",
     "extraUrlText": "learn.microsoft.com/.../windows-commands",
-    "description": "A thorough check for and repair of a Windows NTFS volume in one command line. Click to copy, open an elevated prompt, paste and go.",
+    "description": "A thorough check and repair of a Windows NTFS volume, in one command line. Click to copy, open an elevated prompt, paste and go.",
     "category": "System",
     "type": "cmd",
     "platform": "Windows"
