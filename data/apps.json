@@ -71,10 +71,25 @@
     "commandPrefix": "Run from elevated CMD prompt: ",
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands#command-line-reference-a-z",
-    "extraUrlText": "learn.microsoft.com/.../windows-commands/",
+    "extraUrlText": "learn.microsoft.com/.../windows-commands",
     "description": "A thorough check for and repair of a Windows NTFS volume in one command line. Click to copy, open an elevated prompt, paste and go.",
     "category": "System",
     "type": "cmd",
+    "platform": "Windows"
+  },
+  {
+    "name": "Event Log Summary",
+    "gui": false,
+    "cliOptions": false,
+    "cli": true,
+    "command": "$StartTime = (Get-Date).AddHours(-8)\r\n$Errors = Get-WinEvent -FilterHashtable @{\r\nLogName = '*'\r\nLevel = 1,2\r\nStartTime = $StartTime\r\n} -ErrorAction SilentlyContinue\r\n$Errors | \r\nGroup-Object Id, LogName | \r\nSelect-Object Count, \r\n    @{Name='EventID_LogName';Expression={$_.Name}}, \r\n    @{Name='SampleMessage';Expression={$_.Group[0].Message}} | \r\nSort-Object Count -Descending",
+    "commandPrefix": "Run from elevated PS prompt: ",
+    "extraUrlPrefix": "Docs: ",
+    "extraUrl": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1",
+    "extraUrlText": "learn.microsoft.com/.../get-winevent",
+    "description": "Get a quick summary of critical and error events from the last eight hours. Shows a count of ID, including log name and sample message. Saves to $Error so you can Export-CSV if you spot anything interesting.",
+    "category": "System",
+    "type": "PowerShell",
     "platform": "Windows"
   }
 ]
