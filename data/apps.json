@@ -61,5 +61,20 @@
     "category": "System",
     "type": "PowerShell",
     "platform": "Windows"
+  },
+  {
+    "name": "Windows Disk Check",
+    "gui": false,
+    "cliOptions": false,
+    "cli": true,
+    "command": "chkdsk.exe /scan /perf & sfc.exe /scannow & DISM /Online /Cleanup-Image /RestoreHealth & sfc.exe /scannow",
+    "commandPrefix": "Run from elevated CMD prompt: ",
+    "extraUrlPrefix": "Docs: ",
+    "extraUrl": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands#command-line-reference-a-z",
+    "extraUrlText": "learn.microsoft.com/.../windows-commands/",
+    "description": "A thorough check for and repair of a Windows NTFS volume in one command line. Click to copy, open an elevated prompt, paste and go.",
+    "category": "System",
+    "type": "cmd",
+    "platform": "Windows"
   }
 ]
