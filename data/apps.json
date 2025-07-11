@@ -82,7 +82,7 @@
     "gui": false,
     "cliOptions": false,
     "cli": true,
-    "command": "$StartTime = (Get-Date).AddHours(-8)\r\n$Errors = Get-WinEvent -FilterHashtable @{\r\nLogName = '*'\r\nLevel = 1,2\r\nStartTime = $StartTime\r\n} -ErrorAction SilentlyContinue\r\n$Errors | \r\nGroup-Object Id, LogName | \r\nSelect-Object Count, \r\n    @{Name='EventID_LogName';Expression={$_.Name}}, \r\n    @{Name='SampleMessage';Expression={$_.Group[0].Message}} | \r\nSort-Object Count -Descending",
+    "command": "$StartTime = (date).AddHours(-8)\n$Errors = Get-WinEvent -FilterHashtable @{LogName='*';Level=1,2;StartTime=$StartTime} -EA 0\n$Errors|group Id,LogName|select Count,@{N='EventID_LogName';E={$_.Name}},@{N='SampleMessage';E={$_.Group[0].Message}}|sort Count -Des",
     "commandPrefix": "Run from elevated PS prompt: ",
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1",
