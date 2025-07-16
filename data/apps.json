@@ -24,7 +24,7 @@
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands#command-line-reference-a-z",
     "extraUrlText": "learn.microsoft.com/.../windows-commands",
-    "description": "A thorough check and repair of a Windows NTFS volume, in one command line. Click to copy, open an elevated prompt, paste and go.",
+    "description": "A thorough check and repair of a Windows NTFS volume, in one command line. \nClick to copy, open an elevated prompt, paste and go.",
     "category": "System",
     "type": "cmd",
     "platform": "Windows"
@@ -39,7 +39,7 @@
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1",
     "extraUrlText": "learn.microsoft.com/.../get-winevent",
-    "description": "Get a quick summary of critical and error events from the last eight hours. Shows a count of ID, including log name and sample message. Saves to $Error so you can Export-CSV if you spot anything interesting.",
+    "description": "Get a quick summary of critical and error events from the last eight hours. \nThe output gives a count of IDs, including log name and a sample message. It's saved to $Error so you can Export-CSV if you spot anything interesting.",
     "category": "System",
     "type": "PowerShell",
     "platform": "Windows"
@@ -54,7 +54,7 @@
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts",
     "extraUrlText": "learn.microsoft.com/.../netsh-contexts",
-    "description": "Generate a netsh report of recent Wi-Fi sessions, then immediate open the containg folder; handy whether you want to open it or download it. The 'wlan-report-<date>.html' file doesn't need the other files in WlanReport, but 'wlan-report-latest.xml' could be handy if you need to parse something with a script.",
+    "description": "Generate a netsh report of recent Wi-Fi sessions, then immediate open the containg folder; handy whether you want to open it or download it. \nThe 'wlan-report-<date>.html' file doesn't need the other files in WlanReport, but 'wlan-report-latest.xml' could be useful if you need to parse something with a script.",
     "category": "System",
     "type": "cmd",
     "platform": "Windows"
@@ -70,7 +70,7 @@
 	"extraUrlPrefix": "Site: ",
     "extraUrl": "https://www.nirsoft.net/utils/blue_screen_view.html",
 	"extraUrlText": "nirsoft.net/utils/blue_screen_view.html",
-    "description": "A small utility that displays details of previous BSOD errors (the blue screen of death, or stop errors, that disappear before you can read them). It can also display Windows minidump logs from other machines on your network. See the 'Site' link for other versions and documentation.",
+    "description": "A small utility that displays details of previous BSOD errors (the blue screen of death, or stop errors, that disappear before you can read them). \nBlueScreenView can also display Windows minidump logs from other machines on your network. \nSee the 'Site' link for other versions and documentation.",
     "category": "System",
     "type": "Native App",
     "platform": "Windows"
@@ -86,7 +86,7 @@
 	"extraUrlPrefix": "Site: ",
     "extraUrl": "https://www.nirsoft.net/utils/computer_activity_view.html",
 	"extraUrlText": "nirsoft.net/utils/computer_activity_view.html",
-    "description": "A tiny utility that displays a searchable list of recent system and user activities. Handy for answering the question \"What did you do before it crashed?\". Includes full paths to related files. See the 'Site' link for documentation.",
+    "description": "A tiny utility that displays a searchable list of recent system and user activities. It's perfect for answering the question \"What did you do before it crashed?\". Includes full paths to related files. \nSee the 'Site' link for documentation.",
     "category": "System",
     "type": "Native App",
     "platform": "Windows"
@@ -102,7 +102,7 @@
 	"extraUrlPrefix": "Site: ",
     "extraUrl": "https://github.com/dfinke/ImportExcel",
 	"extraUrlText": "github.com/dfinke/ImportExcel",
-    "description": "Legendary PowerShell module that I use weekly to import Excel files into my scripts, and create them. It even supports formatting, multiple sheets, charts and pivot tables and doesn't need Excel to be installed. Lots of docs and examples on GitHub.",
+    "description": "Legendary PowerShell module that I use weekly to import Excel files into my scripts, and create them. It even supports formatting, multiple sheets, charts and pivot tables and doesn't need Excel to be installed. \nLots of docs and examples on GitHub.",
     "category": "Scripting",
     "type": "PowerShell",
     "platform": "Win|Mac|Linux"
