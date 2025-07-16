@@ -106,5 +106,5 @@
     "category": "Scripting",
     "type": "PowerShell",
     "platform": "Win|Mac|Linux"
-  },
+  }
 ]
