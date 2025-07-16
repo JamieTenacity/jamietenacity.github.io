@@ -49,7 +49,7 @@
     "gui": false,
     "cliOptions": false,
     "cli": true,
-    "command": "netsh wlan show wlanreport && start \"\" \"%ProgramData%\\Microsoft\\Windows\\WlanReport\\" /MAX",
+    "command": "netsh wlan show wlanreport && start \"\" \"%ProgramData%\\Microsoft\\Windows\\WlanReport\\\" /MAX",
     "commandPrefix": "Run from elevated CMD prompt: ",
     "extraUrlPrefix": "Docs: ",
     "extraUrl": "https://learn.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts",
