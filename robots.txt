@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /css/
+Disallow: /data/
+Disallow: /images/
+Disallow: /js/
+
+Sitemap: https://jamieclay.com/sitemap.xml
